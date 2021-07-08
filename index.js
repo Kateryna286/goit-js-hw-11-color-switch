@@ -13,30 +13,32 @@ const refs = {
     body: document.querySelector('body'),
 };
 
-let timerId = null;
-
 const randomIntegerFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-const onStartClick = () => {
-  timerId = setInterval(() => {
-    changeBgColor();
-  }, 1000);
-};
+let timerId = null;
 
 refs.btnStart.addEventListener('click', onStartClick);
 refs.btnStop.addEventListener('click', onStopClick);
 
+function onStartClick () {
+  timerId = setInterval(() => {
+    toChangeBgColor();
+  }, 1000);
+    console.log('Start');
+};
 
 function onStopClick () {
     clearInterval(timerId);
     refs.btnStart.removeAttribute('disabled');
+    console.log('Stop');
 };
 
-function changeBgColor() {
+function toChangeBgColor() {
     refs.body.style.backgroundColor = `${colors[randomIntegerFromInterval(0, colors.length)]}`;
     refs.btnStart.setAttribute('disabled', true);
+    console.log('changing colors');
 };
 
 
